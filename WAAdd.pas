@@ -123,7 +123,7 @@ function  CalcSum(X1, X2: String): String;
 
 implementation
 
-uses WAStrings, WAMain, WAProgress;
+uses WAStrings, WAMain, WAProgress, WALocalDBPass;
 
 function CanConnectServer: Boolean;
 begin
@@ -138,8 +138,6 @@ begin
 end;
 
 function OpenConnections: Boolean;
-const
-  cLocalPassword = '123';
 var
   LocalDB, sError, sErrorE: String;
 begin
