@@ -49,6 +49,7 @@ type
       Shift: TShiftState);
     procedure btnBaseTaresClick(Sender: TObject);
   private
+    WM_WA_NEW_DATA,
     WM_AVITEK_NEW_WDATA,
     WM_AVITEK_OPEN_WSESSION,
     WM_AVITEK_CLOSE_WSESSION,
@@ -63,8 +64,8 @@ type
 
     function  SaveToServer(AWhat: Byte; Values: array of String): Boolean;
     function  SaveScaleInfo: Boolean;
-    function  SaveWeightStep(AStep, AMessage: String): Boolean;
 
+    procedure MessageNewData();
     procedure AvitekMessage(AMessage: TAvitekMessage);
     function  AvitekRun: Boolean;
     procedure AvitekStop;
@@ -96,6 +97,7 @@ end;
 
 procedure TMain.FormCreate(Sender: TObject);
 begin
+  WM_WA_NEW_DATA := RegisterWindowMessage('WM_WA_NEW_DATA');
   WM_AVITEK_NEW_WDATA := RegisterWindowMessage('WM_AVITEK_NEW_WDATA');
   WM_AVITEK_OPEN_WSESSION := RegisterWindowMessage('WM_AVITEK_OPEN_WSESSION');
   WM_AVITEK_CLOSE_WSESSION := RegisterWindowMessage('WM_AVITEK_CLOSE_WSESSION');
@@ -283,7 +285,6 @@ begin
   pnlUserName.Caption := CurrentUserName;
   WriteToLog('USER: ' + CurrentUserName);
   SetWorkMode;
-  SaveWeightStep('1', rsServerChangeUser);
 end;
 
 procedure TMain.SetWorkMode;
@@ -384,26 +385,6 @@ begin
             ]);
           AError := rsErrorSLScaleInfo;
         end;
-        1: begin
-          frmProgress.ProgressCaption := rsProgressUserNameSave;
-          ATableName := rsTableServerWeightStep;
-          AFields := rsSQLServerWeightStep;
-          AValues := SQLFormatValues([
-            0,                         // Порядковый номер шага взвешивания
-            Scales,                    // Номер весов
-            {TODO: DELETE}                         DTToWTimeStr(Now),         // Системное время перехода к шагу взвешивания
-            DTToSQLStr(Now),           // Дата и время перехода к шагу взвешивания
-            Values[0],                 // Признак шага взвешивания
-            // Дополнительная информация
-            CurrentUserName,           // Оператор
-            // Табельный номер
-            // Номер смены
-            // Литер смены
-            DTToSQLStr(UserDateTime),  // Дата и время начала смены опреатора
-            Values[1]                  // Сообщение о шаге взвешивания
-            ]);
-          AError := rsErrorSLUserName;
-        end;
         else Exit;
         end;
 
@@ -433,14 +414,14 @@ begin
   Result := SaveToServer(0, []);
 end;
 
-function TMain.SaveWeightStep(AStep, AMessage: String): Boolean;
-begin
-  Result := SaveToServer(1, [AStep, AMessage]);
-end;
-
 procedure TMain.UpdateStatusBar;
 begin
-  if ConnectionServer.Connected or Settings.AvitekUse then StatusBar.Panels[1].Text := '' else StatusBar.Panels[1].Text := rsServerOFF;
+  //if ConnectionServer.Connected or Settings.AvitekUse then StatusBar.Panels[1].Text := '' else StatusBar.Panels[1].Text := rsServerOFF;
+end;
+
+procedure TMain.MessageNewData();
+begin
+  SendMessage(HWND_BROADCAST, WM_WA_NEW_DATA, 0, 0);
 end;
 
 procedure TMain.AvitekMessage(AMessage: TAvitekMessage);

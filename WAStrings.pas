@@ -52,15 +52,12 @@ resourcestring
   rsProgressDataRead      = ' (запрос)';
   rsProgressConnection    = 'Соединение с базой';
   rsProgressScaleInfoSave = 'Сохранение данных о весах';
-  rsProgressUserNameSave  = 'Сохранение имени пользователя';
   rsProgressBruttoSave    = 'Сохранение брутто';
   rsProgressBruttoLoad    = 'Чтение брутто';
   rsProgressTareSave      = 'Сохранение тары';
   rsProgressTareLoad      = 'Чтение тары';
   rsProgressDriverLoad    = 'Чтение водителя';
   rsProgressDelAuto       = 'Удаление провесок';
-
-  rsServerChangeUser      = 'Смена оператора';
 
   rsQuestionDelete        = 'Удалить выделенные %s?'#13#10 +
                          'Отмена данного действия невозможна';
@@ -108,16 +105,13 @@ resourcestring
   rsErrorSLTare        = 'тару';
   rsErrorSLDriver      = 'водителя';
   rsErrorSLScaleInfo   = 'данные о весах';
-  rsErrorSLUserName    = 'имя пользователя';
 
   rsTableBrutto  = 'autob';
   rsTableTares   = 'autot';
 
   rsTableServerScalesInfo = 'scalesinfo';
-  rsTableServerWeightStep = 'heap_weighstep';
 
   rsSQLServerScalesInfo   = 'scales, ctime, cdatetime, ipaddr, type, sclass, dclass, place, tag1';
-  rsSQLServerWeightStep   = 'num, scales, wtime, wdatetime, step, operator, opdatetime, message';
 
   rsSQLLocalBrutto        = 'bdatetime, wtime, auto_num, brutto, tare, idatetime_tare, ' +
                          'cargotype, invoice_num, invoice_supplier, invoice_recipient, invoice_netto, ' +

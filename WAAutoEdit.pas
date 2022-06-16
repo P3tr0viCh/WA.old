@@ -477,6 +477,7 @@ begin
     if CanServer then PerformSaveData(ctServer);
     Result := PerformSaveData(ctLocal);
   finally
+    Main.MessageNewData;
     Main.AvitekNewData;
     frmProgress.Hide;
   end;
