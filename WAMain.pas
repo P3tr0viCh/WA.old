@@ -275,7 +275,7 @@ end;
 procedure TMain.btnAboutClick(Sender: TObject);
 begin
   WriteToLog('ABOUT');
-  ShowAbout(13, 2, 4, #0, nil, rsAddComp, #0, #0, rsCopyright, rsEULA2 + sLineBreak + rsEULA3 + sLineBreak + rsEULA4);
+  ShowAbout(13, 2, 1, #0, nil, rsAddComp, #0, #0, rsCopyright, rsEULA2 + sLineBreak + rsEULA3 + sLineBreak + rsEULA4);
 end;
 
 procedure TMain.ChangeUser;

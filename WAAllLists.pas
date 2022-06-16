@@ -707,7 +707,7 @@ function TfrmAllLists.LoadData(ASQLDateTime: String): Boolean;
 
   //            MsgBox(SQL.Text); //Exit;
 
-        SQLOpen(S, AConnectionServer);;
+        SQLOpen(S, AConnectionServer);
         try
           frmProgress.MaxProgress(RecordCount, False);
           while not Eof do

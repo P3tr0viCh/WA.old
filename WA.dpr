@@ -1,6 +1,6 @@
 program WA;
 
-{%ToDo 'WA.todo'}
+
 
 uses
   Windows,
@@ -16,7 +16,8 @@ uses
   WAFilter in 'WAFilter.pas' {frmFilter},
   WAAllLists in 'WAAllLists.pas' {frmAllLists},
   WAWeight in 'WAWeight.pas' {frmWeight},
-  WAAutoEdit in 'WAAutoEdit.pas' {frmAutoEdit};
+  WAAutoEdit in 'WAAutoEdit.pas' {frmAutoEdit},
+  WALocalDBPass in 'WALocalDBPass.pas';
 
 {$R *.res}
 {$R WAAdd.res}
@@ -37,6 +38,6 @@ begin
       Application.ShowMainForm:=False;
       Application.Title := 'Весовое ПО (А)';
       Application.CreateForm(TMain, Main);
-      Application.Run;
+  Application.Run;
     end;
 end.
