@@ -2,7 +2,7 @@ unit WAWeight;
 
 interface
 
-//{$DEFINE RANDOMDATA}
+// {$DEFINE RANDOMDATA}
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
@@ -37,7 +37,8 @@ type
   public
   end;
 
-function StartWeight(var ASQLDateTime, ABrutto: String; var ATypeBrutto: Boolean): Boolean;
+function StartWeight(var ASQLDateTime, ABrutto: String;
+  var ATypeBrutto: Boolean): Boolean;
 
 implementation
 
@@ -47,10 +48,14 @@ uses WAAdd, WAStrings, WAMain, Math;
 
 procedure TfrmWeight.WMGetSysCommand(var Message: TMessage);
 begin
-  if (Message.wParam = SC_MINIMIZE) then Application.Minimize else inherited;
+  if (Message.wParam = SC_MINIMIZE) then
+    Application.Minimize
+  else
+    inherited;
 end;
 
-function StartWeight(var ASQLDateTime, ABrutto: String; var ATypeBrutto: Boolean): Boolean;
+function StartWeight(var ASQLDateTime, ABrutto: String;
+  var ATypeBrutto: Boolean): Boolean;
 var
   S: String;
 begin
@@ -59,8 +64,10 @@ begin
     try
       Result := ShowModal = mrOk;
 
-      if Result then S := rsLOGWeightOK
-      else S := rsLOGWeightCancel;
+      if Result then
+        S := rsLOGWeightOK
+      else
+        S := rsLOGWeightCancel;
       WriteToLogForm(False, rsLOGFormWeight + ' ' + S);
 
       ASQLDateTime := DTToSQLStr(Now);
@@ -73,22 +80,22 @@ end;
 
 procedure TfrmWeight.FormCreate(Sender: TObject);
 begin
-  {$IFDEF RANDOMDATA}
+{$IFDEF RANDOMDATA}
   Randomize;
   Timer.Interval := 1000;
-  {$ENDIF}
+{$ENDIF}
   COM := TComPort.Create(Application);
   COMFS.DecimalSeparator := '.';
   with COM do
-    begin
-      ComPort := TComPortNumber(Settings.ComNumber);
-      ComPortSpeed := br9600;
-      ComPortInputBufferSize := 64;
-      ComPortOutputBufferSize := 64;
-    end;
+  begin
+    ComPort := TComPortNumber(Settings.ComNumber);
+    ComPortSpeed := br9600;
+    ComPortInputBufferSize := 64;
+    ComPortOutputBufferSize := 64;
+  end;
   with CreateINIFile do
     try
-     ReadFormPosition(Self);
+      ReadFormPosition(Self);
     finally
       Free;
     end;
@@ -118,7 +125,7 @@ var
   i: Integer;
 begin
   for i := 0 to ComponentCount - 1 do
-    if not (Components[i] is TTimer) then
+    if not(Components[i] is TTimer) then
       TControl(Components[i]).Enabled := AEnable;
 end;
 
@@ -126,13 +133,13 @@ procedure TfrmWeight.TimerCOMConnect(Sender: TObject);
 begin
   try
     Timer.Enabled := False;
-    {$IFNDEF RANDOMDATA}
+{$IFNDEF RANDOMDATA}
     if not COM.Connect then
-      begin
-        MsgBoxErr(Format(rsErrorOpenPort, [Settings.ComNumber + 1]), Handle);
-        Close;
-      end;
-    {$ENDIF}
+    begin
+      MsgBoxErr(Format(rsErrorOpenPort, [Settings.ComNumber + 1]), Handle);
+      Close;
+    end;
+{$ENDIF}
     Timer.OnTimer := TimerTimer;
   finally
     DisableEnable(True);
@@ -144,35 +151,46 @@ end;
 
 procedure TfrmWeight.TimerTimer(Sender: TObject);
 var
-  {$IFNDEF RANDOMDATA}
   S: String;
-  {$ENDIF}
   F: Extended;
 begin
-  {$IFDEF RANDOMDATA}
+{$IFDEF RANDOMDATA}
   if rbtnWeightTypeBrutto.Checked then
     F := (50000 + Random(50000)) / 1000
   else
     F := Random(49900) / 1000;
-  {$ELSE}
+{$ELSE}
   COM.ReadString(S);
-  {$ENDIF}
+{$ENDIF}
   try
-    {$IFDEF RANDOMDATA}
+{$IFDEF RANDOMDATA}
     btnSave.Enabled := True;
-    {$ELSE}
-    F := StrToFloat(Copy(S, Length(S) - 8, 7), COMFS);
-    if Abs(F - StrToFloat(pnlGross.Caption)) <= 0.02 then
-      begin
-        if not btnSave.Enabled then
-          TimerSave.Enabled := True;
-      end
+{$ELSE}
+    if False then
+    begin
+      // Ньютон-42
+      S := Copy(S, Length(S) - 8, 7);
+    end
     else
-      begin
-        btnSave.Enabled := False;
-        TimerSave.Enabled := False;
-      end;
-    {$ENDIF}
+    begin
+      // Мидл ВДА/12Я
+      // ww000.000kg
+      S := Copy(S, 3, 7);
+    end;
+
+    F := StrToFloat(S, COMFS);
+
+    if Abs(F - StrToFloat(pnlGross.Caption)) <= 0.02 then
+    begin
+      if not btnSave.Enabled then
+        TimerSave.Enabled := True;
+    end
+    else
+    begin
+      btnSave.Enabled := False;
+      TimerSave.Enabled := False;
+    end;
+{$ENDIF}
     pnlGross.Caption := FmtFloat(F);
   except
   end;
@@ -187,15 +205,15 @@ end;
 procedure TfrmWeight.rbtnWeightTypeBruttoClick(Sender: TObject);
 begin
   if rbtnWeightTypeBrutto.Checked then
-    begin
-      rbtnWeightTypeBrutto.Font.Style := [fsBold, fsUnderline];
-      rbtnWeightTypeTare.  Font.Style := [];
-    end
+  begin
+    rbtnWeightTypeBrutto.Font.Style := [fsBold, fsUnderline];
+    rbtnWeightTypeTare.Font.Style := [];
+  end
   else
-    begin
-      rbtnWeightTypeBrutto.Font.Style := [];
-      rbtnWeightTypeTare.  Font.Style := [fsBold, fsUnderline];
-    end;
+  begin
+    rbtnWeightTypeBrutto.Font.Style := [];
+    rbtnWeightTypeTare.Font.Style := [fsBold, fsUnderline];
+  end;
 end;
 
 procedure TfrmWeight.btnSaveClick(Sender: TObject);
@@ -205,15 +223,19 @@ procedure TfrmWeight.btnSaveClick(Sender: TObject);
   begin
     try
       Result := StrToFloat(pnlGross.Caption) > 0;
-      if not Result then S := rsErrorNumberNil;
+      if not Result then
+        S := rsErrorNumberNil;
     except
       Result := False;
       S := rsErrorNumberBad;
     end;
-    if not Result then MsgBoxErr(Format(rsErrorValueBad, [rsBrutto, S, pnlGross.Caption]));
+    if not Result then
+      MsgBoxErr(Format(rsErrorValueBad, [rsBrutto, S, pnlGross.Caption]));
   end;
+
 begin
-  if CheckBrutto then ModalResult := mrOk;
+  if CheckBrutto then
+    ModalResult := mrOk;
 end;
 
 end.

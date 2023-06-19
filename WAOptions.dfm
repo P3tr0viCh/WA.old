@@ -70,10 +70,6 @@ object frmOptions: TfrmOptions
       TabOrder = 0
       object tsProgram: TTabSheet
         Caption = #1055#1088#1086#1075#1088#1072#1084#1084#1072
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object gbComPort: TGroupBox
           Left = 4
           Top = 106
@@ -87,13 +83,13 @@ object frmOptions: TfrmOptions
             Width = 130
             Height = 26
             Style = csDropDownList
-            DropDownCount = 2
-            ItemIndex = 0
+            DropDownCount = 4
             TabOrder = 0
-            Text = 'COM 1'
             Items.Strings = (
               'COM 1'
-              'COM 2')
+              'COM 2'
+              'COM 3'
+              'COM 4')
           end
         end
         object gbWorkMode: TGroupBox
@@ -133,10 +129,6 @@ object frmOptions: TfrmOptions
       object tsScales: TTabSheet
         Caption = #1042#1077#1089#1099
         ImageIndex = 3
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object gbPlace: TGroupBox
           Left = 4
           Top = 64
@@ -213,10 +205,6 @@ object frmOptions: TfrmOptions
       object tsMySQLOptions: TTabSheet
         Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080' MySQL'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object gbMySQLIP: TGroupBox
           Left = 4
           Top = 4
@@ -288,10 +276,6 @@ object frmOptions: TfrmOptions
       object tsMySQL: TTabSheet
         Caption = 'MySQL'
         ImageIndex = 7
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object cboxMySQLUse: TCheckBox
           Left = 4
           Top = 16
@@ -304,10 +288,6 @@ object frmOptions: TfrmOptions
       object tsAvitek: TTabSheet
         Caption = #1040#1074#1080#1090#1077#1082
         ImageIndex = 8
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object cboxAvitekUse: TCheckBox
           Left = 4
           Top = 16
@@ -349,10 +329,6 @@ object frmOptions: TfrmOptions
       object tsUsers: TTabSheet
         Caption = #1055#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1080
         ImageIndex = 3
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object lvUsers: TListView
           Tag = 1
           Left = 4
@@ -411,10 +387,6 @@ object frmOptions: TfrmOptions
       object tsCargoTypes: TTabSheet
         Caption = #1056#1086#1076' '#1075#1088#1091#1079#1072
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object lvCargoTypes: TListView
           Tag = 4
           Left = 4
@@ -472,10 +444,6 @@ object frmOptions: TfrmOptions
       object tsSuppliers: TTabSheet
         Caption = #1043#1088#1091#1079#1086#1086#1090#1087#1088#1072#1074#1080#1090#1077#1083#1080
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object lvSuppliers: TListView
           Tag = 3
           Left = 4
@@ -533,10 +501,6 @@ object frmOptions: TfrmOptions
       object tsRecipients: TTabSheet
         Caption = #1043#1088#1091#1079#1086#1087#1086#1083#1091#1095#1072#1090#1077#1083#1080
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object lvRecipients: TListView
           Tag = 2
           Left = 4
