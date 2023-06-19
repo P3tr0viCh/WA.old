@@ -41,8 +41,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <Icon_MainIcon>WA_Icon.ico</Icon_MainIcon>
-        <DCC_UnitSearchPath>C:\Docs\Projects\Delphi\!Components;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\..\..\Projects\Delphi\!Components;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <SanitizedProjectName>WA</SanitizedProjectName>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_S>false</DCC_S>
@@ -50,10 +49,10 @@
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;Data.Win;System.Win;$(DCC_Namespace)</DCC_Namespace>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <VerInfo_Locale>1049</VerInfo_Locale>
-        <DCC_DcuOutput>c:\docs\Projects.exe\WA\DCU</DCC_DcuOutput>
-        <DCC_ExeOutput>c:\docs\Projects.exe\WA</DCC_ExeOutput>
-        <DCC_DcpOutput>c:\docs\Projects.exe\WA\Bpl</DCC_DcpOutput>
-        <DCC_BplOutput>c:\docs\Projects.exe\WA\Bpl</DCC_BplOutput>
+        <DCC_DcuOutput>..\..\..\Projects.exe\Delphi\WA\DCU</DCC_DcuOutput>
+        <DCC_ExeOutput>..\..\..\Projects.exe\Delphi\WA</DCC_ExeOutput>
+        <DCC_DcpOutput>..\..\..\Projects.exe\Delphi\WA\Bpl</DCC_DcpOutput>
+        <DCC_BplOutput>..\..\..\Projects.exe\Delphi\WA\Bpl</DCC_BplOutput>
         <DCC_UsePackage>vcl;rtl;dbrtl;adortl;vcldb;vclx;bdertl;vcldbx;ibxpress;dsnap;cds;bdecds;qrpt;teeui;teedb;tee;dss;teeqr;visualclx;visualdbclx;dsnapcrba;dsnapcon;VclSmp;vclshlctrls;dclOffice2k;Package;A404_R60;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_K>false</DCC_K>
         <DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
@@ -573,13 +572,13 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
